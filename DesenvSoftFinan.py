@@ -1,6 +1,6 @@
 # Definição do menu do sistema bancário
 
-menu = """"
+menu = """
 
 [1] Depositar
 [2] Sacar
@@ -9,7 +9,8 @@ menu = """"
 
 => """
 
-# Variaveis de controle
+# Variáveis de controle
+
 saldo = 0.0
 limite_saque = 500.0
 extrato = []
@@ -22,7 +23,6 @@ def exibir_extrato():
     
     if not extrato:
         print("Não foram realizadas movimentações.")
-    
     else:
         for movimento in extrato:
             print(movimento)
@@ -52,30 +52,32 @@ def sacar(valor):
     elif numero_saques >= limite_diario:
         print("Operação falhou! Número máximo de saques excedido.")
     else:
-        saldo = valor
+        saldo -= valor
         extrato.append(f"Saque: R$ {valor:.2f}")
         numero_saques += 1
         print(f"Saque de R$ {valor:.2f} realizado com sucesso!")
 
-# Loop principal do sistema bancário
+# Loop
+
 while True:
-    opção = input(menu).lower()
+    opcao = input(menu).lower()
     
-    if opção == "1":
+    if opcao == "1":
         valor = float(input("Informe o valor do depósito: "))
         depositar(valor)
     
-    elif opção == "2":
+    elif opcao == "2":
         valor = float(input("Informe o valor do saque: "))
         sacar(valor)
     
-    elif opção == "3":
+    elif opcao == "3":
         exibir_extrato()
         
-    elif opção == "4":
+    elif opcao == "4":
         print("Obrigado por utilizar o sistema. Até logo!")
         break
     
     else:
         print("Operação inválida, por favor selecione novamente a operação desejada.")
+
         
